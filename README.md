@@ -1,4 +1,4 @@
-# Token status Lists
+# Token Status Lists
 
 An implementation of [Token Status Lists](https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/21/) ietf draft
 
