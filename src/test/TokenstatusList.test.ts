@@ -1,5 +1,5 @@
 import assert, { equal } from "node:assert";
-import TokenStatusList from "../TokenStatusList";
+import TokenStatusList, { IIndexedStatus } from "../TokenStatusList";
 
 const dynamicTestShort = (bits: number, indexes: number[], values?: number[]) => () =>
     {
@@ -78,6 +78,23 @@ describe("TokenStatusList", () =>
         const defaultValue = 0;
         const list = new TokenStatusList(1, defaultValue);
         assert.equal(list.getValue(0), defaultValue);
+    }),
+
+    it("Should accept statuses in, in-bulk", () =>
+    {
+        const list = new TokenStatusList(1);
+
+        const statuses: IIndexedStatus[] = [
+            {id: 0, status: 0b1},
+            {id: 1, status: 0b0},
+            {id: 2, status: 0b1},
+        ];
+
+        list.setValues("status", ...statuses);
+
+        assert.equal(list.getValue(0), statuses[0]["status"]);
+        assert.equal(list.getValue(1), statuses[1]["status"]);
+        assert.equal(list.getValue(2), statuses[2]["status"]);
     }),
 
     describe("RFC Examples", () =>

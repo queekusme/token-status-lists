@@ -1,11 +1,16 @@
 import { deflate, inflate } from 'pako';
 
-
 export interface ITokenStatusList
 {
     bits: number;
     lst: string;
     aggregation_uri?: string;
+}
+
+export interface IIndexedStatus
+{
+    id: number;
+    [key: string]: number;
 }
 
 export default class TokenStatusList
@@ -57,6 +62,19 @@ export default class TokenStatusList
         return this;
     }
 
+    /**
+     * Import statuses into the list in bulk
+     *
+     * @param key key to use to gather values
+     * @param statuses list of indexed statuses such as from a database
+     */
+    public setValues(key: string, ...statuses: IIndexedStatus[]): this
+    {
+        for(const status of statuses) this.setValue(status.id, status[key]);
+
+        return this;
+    }
+
     public getCompressedByteArray(): number[]
     {
         let arr: number[] = [];
@@ -94,7 +112,7 @@ export default class TokenStatusList
 
     /**
      * Load an encoded token status List JSON object in to get a queryable list back
-     * 
+     *
      * @param input json representation of a Token status List
      * @returns Queryable token status list
      */
