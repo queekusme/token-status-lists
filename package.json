@@ -1,0 +1,21 @@
+{
+    "name": "token-status-lists",
+    "version": "1.0.0",
+    "description": "",
+    "license": "MIT",
+    "author": "queekusme",
+    "type": "commonjs",
+    "repository": "github:queekusme/token-status-lists",
+    "scripts": {
+        "start": "node dist/index.js",
+        "test": "mocha dist/test/**/*.test.js"
+    },
+    "dependencies": {
+        "pako": "^3.0.1"
+    },
+    "devDependencies": {
+        "@types/mocha": "^10.0.10",
+        "@types/node": "^26.1.1",
+        "mocha": "^11.7.6"
+    }
+}

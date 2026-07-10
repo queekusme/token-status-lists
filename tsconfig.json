@@ -1,0 +1,32 @@
+{
+    "compilerOptions": {
+        "target": "es2021",
+        "moduleResolution": "nodenext",
+        "module": "nodenext",
+        "declaration": true,
+        "noLib": false,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "sourceMap": true,
+        "pretty": true,
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+        "noImplicitAny": true,
+        "noImplicitReturns": false,
+        "noImplicitUseStrict": false,
+        "outDir": "dist/",
+        "rootDir": "src/",
+        "listFiles": false,
+        "noEmitHelpers": false,
+        "strictNullChecks": true,
+        "types":["node", "mocha"]
+    },
+    "include":[
+        "src/**/*.ts",
+        "src/**/*.d.ts",
+    ],
+    "exclude":[
+        "node_modules"
+    ],
+    "compileOnSave": true,
+ }
