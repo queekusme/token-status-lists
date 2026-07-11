@@ -3,12 +3,17 @@
     "version": "1.0.0",
     "description": "",
     "license": "MIT",
-    "author": "queekusme",
+    "author": {
+        "name": "Queekusme",
+        "url": "https://queekus.com/"
+    },
     "type": "commonjs",
     "repository": "github:queekusme/token-status-lists",
     "scripts": {
         "start": "node dist/index.js",
-        "test": "mocha dist/test/**/*.test.js"
+        "test": "mocha dist/test/**/*.test.js",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix"
     },
     "dependencies": {
         "pako": "^3.0.1"
@@ -16,6 +21,10 @@
     "devDependencies": {
         "@types/mocha": "^10.0.10",
         "@types/node": "^26.1.1",
-        "mocha": "^11.7.6"
+        "mocha": "^11.7.6",
+        "@typescript-eslint/eslint-plugin": "^4.22.1",
+        "@typescript-eslint/parser": "^4.22.1",
+        "eslint": "^7.26.0",
+        "typescript": "^4.2.4"
     }
 }

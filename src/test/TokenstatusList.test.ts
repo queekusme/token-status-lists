@@ -1,4 +1,4 @@
-import assert, { equal } from "node:assert";
+import assert from "node:assert";
 import TokenStatusList, { IIndexedStatus } from "../TokenStatusList";
 
 const dynamicTestShort = (bits: number, indexes: number[], values?: number[]) => () =>
@@ -23,10 +23,15 @@ const dynamicTestShort = (bits: number, indexes: number[], values?: number[]) =>
 
             assert.deepEqual(newTest, status);
         });
+    };
 
-        // Example lst values just do not match for some reason, so as long as we can pull the correct data back, test should pass
-    }
-const dynamicTestFull = (bits: number, indexes: number[], values: number[], byteArray: number[], lstValue: string) => () =>
+const dynamicTestFull = (
+    bits: number,
+    indexes: number[],
+    values: number[],
+    byteArray: number[],
+    lstValue: string
+) => () =>
     {
         const status: number[] = [];
 
@@ -58,7 +63,7 @@ const dynamicTestFull = (bits: number, indexes: number[], values: number[], byte
 
             assert.deepEqual(newTest, status);
         });
-    }
+    };
 
 describe("TokenStatusList", () =>
 {
@@ -113,7 +118,9 @@ describe("TokenStatusList", () =>
             [0, 1993, 25460, 159495, 495669, 554353, 645645, 723232, 854545, 934534, 1000345],
             [0b01, 0b10, 0b01, 0b11, 0b01, 0b01, 0b10, 0b01, 0b01, 0b10, 0b11]));
         describe("Example 4", dynamicTestShort(4,
-            [0, 1993, 35460, 459495, 595669, 754353, 845645, 923232, 924445, 934534, 1004534, 1000345, 1030203, 1030204, 1030205],
-            [0b0001, 0b0010, 0b0011, 0b0100, 0b0101, 0b0110, 0b0111, 0b1000, 0b1001, 0b1010, 0b1011, 0b1100, 0b1101, 0b1110, 0b1111]));
+            [0, 1993, 35460, 459495, 595669, 754353, 845645, 923232,
+             924445, 934534, 1004534, 1000345, 1030203, 1030204, 1030205],
+            [0b0001, 0b0010, 0b0011, 0b0100, 0b0101, 0b0110, 0b0111, 0b1000,
+             0b1001, 0b1010, 0b1011, 0b1100, 0b1101, 0b1110, 0b1111]));
     });
 });

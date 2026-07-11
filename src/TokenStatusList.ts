@@ -1,4 +1,4 @@
-import { deflate, inflate } from 'pako';
+import { deflate, inflate } from "pako";
 
 export interface ITokenStatusList
 {
@@ -77,7 +77,7 @@ export default class TokenStatusList
 
     public getCompressedByteArray(): number[]
     {
-        let arr: number[] = [];
+        const arr: number[] = [];
         let acc: number = 0;
         for(let i = 0; i < this.bitArray.length; i++)
         {
@@ -85,13 +85,13 @@ export default class TokenStatusList
 
             if(i > 0 && shift === 0)
             {
-                arr.push(acc)
+                arr.push(acc);
                 acc = 0;
             }
 
             acc = acc | (this.getValue(i) ?? this.defaultValue) << shift;
         }
-        arr.push(acc)
+        arr.push(acc);
 
         return arr;
     }
@@ -102,12 +102,12 @@ export default class TokenStatusList
     public getTokenList(): ITokenStatusList
     {
         const lst = Buffer.from(deflate(new Uint8Array(this.getCompressedByteArray()), { level: this.deflateValue }))
-            .toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+            .toString("base64").replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 
         return {
             bits: this.bits,
-            lst: lst.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
-        }
+            lst: lst.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "")
+        };
     }
 
     /**
@@ -120,8 +120,8 @@ export default class TokenStatusList
     {
         const list = new TokenStatusList(input.bits);
 
-        const base64Encoded = input.lst.replace(/-/g, '+').replace(/_/g, '/');
-        const padding = input.lst.length % 4 === 0 ? '' : '='.repeat(4 - (input.lst.length % 4));
+        const base64Encoded = input.lst.replace(/-/g, "+").replace(/_/g, "/");
+        const padding = input.lst.length % 4 === 0 ? "" : "=".repeat(4 - (input.lst.length % 4));
         const base64WithPadding = base64Encoded + padding;
 
         const inflated = inflate(Buffer.from(base64WithPadding, "base64"));
